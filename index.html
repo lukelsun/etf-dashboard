@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'self'; font-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta name="description" content="五类ETF每日份额净买卖看板：每日净额、历史柱状图与最近20个交易日汇总（需登录）。">
+<title>五类 ETF · 每日净买卖看板</title>
+<style>
+
+:root{--ink:#172c36;--muted:#657983;--line:#dfe7eb;--paper:#fff;--bg:#f4f7f8;--red:#c64843;--green:#16816b;--accent:#264e63;--warning:#956218}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 "Segoe UI","Microsoft YaHei",system-ui,sans-serif;font-variant-numeric:tabular-nums}a{color:inherit;text-decoration:none}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible{outline:3px solid #77b4d0;outline-offset:4px}button{font:inherit;cursor:pointer}.shell{max-width:1456px;padding:42px 48px 30px;margin:0 auto}.masthead{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}.eyebrow{font-size:11px;letter-spacing:1.8px;color:var(--muted);font-weight:700;margin:0 0 7px}h1{font-size:32px;letter-spacing:.4px;line-height:1.3;margin:0;font-weight:700}.subtitle{color:var(--muted);margin:12px 0 0;font-size:14px}.actions{display:flex;gap:10px;align-items:center;padding-top:20px}.button{padding:10px 17px;border:1px solid #cbd8df;background:var(--paper);border-radius:8px;font-weight:600;white-space:nowrap}.button.primary{background:var(--accent);border-color:var(--accent);color:#fff}.button:hover{filter:brightness(.97)}.info-strip{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:21px 0 20px;margin-top:26px;border-top:1px solid var(--line)}.cutoff{display:flex;align-items:baseline;gap:11px}.cutoff span{color:var(--muted);font-size:13px}.cutoff strong{font-size:24px}.update-badge{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}.pulse-dot{width:7px;height:7px;border-radius:50%;background:#7b939d;flex-shrink:0}.status{display:grid;grid-template-columns:auto 1fr;gap:7px 20px;border:1px solid #dbe6eb;background:#edf4f6;border-radius:9px;padding:15px 18px;margin-bottom:27px}.status-label{font-weight:700;font-size:13px}.status p{margin:0;color:#596f79;font-size:12px}.status.warning{background:#fff8ea;border-color:#ecd8b1}.status.warning .status-label{color:var(--warning)}.status.ready{background:#edf7f3;border-color:#cfE4dc}.status.ready .status-label{color:var(--green)}.summary-heading{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}.summary-heading h2{font-size:15px;margin:0}.summary-heading p{color:var(--muted);margin:0;font-size:12px}.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}.metric-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:19px 19px 14px;transition:transform .15s,box-shadow .15s}.metric-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px #1934400b}.metric-top{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:15px;font-weight:700}.fund-count{font-size:10px;font-weight:400;color:var(--muted);white-space:nowrap}.metric-value{font-size:28px;font-weight:650;letter-spacing:-.6px;margin:14px 0 8px;line-height:1.2;white-space:nowrap}.metric-value small{font-size:12px;margin-left:6px;letter-spacing:0;font-weight:400}.positive{color:var(--red)}.negative{color:var(--green)}.neutral{color:var(--muted)}.metric-caption{display:flex;justify-content:space-between;color:var(--muted);font-size:10px}.metric-caption span{font-size:10px;color:#7e939c}.nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:24px 0}.nav-label{color:var(--muted);font-size:11px;margin-right:5px}.nav a{border:1px solid #d9e3e8;background:#fff;border-radius:6px;padding:6px 14px;font-size:12px}.nav a:hover{border-color:#638899;color:#264e63}.chart-panel{border:1px solid var(--line);background:#fff;border-radius:12px;padding:24px 25px 16px;margin:0 0 22px;overflow:hidden}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}.section-heading .eyebrow{font-size:10px;letter-spacing:1.3px;margin-bottom:4px}.section-heading h2{font-size:23px;line-height:1.3;margin:0}.chart-period{font-size:11px;color:var(--muted);text-align:right}.chart-stats{display:grid;grid-template-columns:repeat(4,1fr);margin:22px 0 5px;padding:15px 0 9px;border-top:1px solid #edf1f3}.chart-stats>div{padding-left:24px;border-left:1px solid #e6edef}.chart-stats>div:first-child{padding-left:0;border-left:0}.chart-stats span{display:block;font-size:11px;color:var(--muted);margin-bottom:3px}.chart-stats strong{font-size:20px;font-weight:600;white-space:nowrap}.chart-stats small{font-size:10px;font-weight:400;margin-left:6px;color:var(--muted)}.chart-stats .day-count{font-size:19px;color:#46616f}.flow-chart{width:100%;height:auto;display:block;margin:0;object-fit:contain}.chart-note{border-top:1px solid #edf1f3;padding-top:12px;display:flex;justify-content:space-between;gap:12px;font-size:10px;color:var(--muted)}.dot{display:inline-block;width:6px;height:6px;border-radius:1px;vertical-align:1px;margin-right:5px}.dot.green{background:var(--green);margin-left:16px}.dot.red{background:var(--red)}.table-panel{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 25px 18px}.table-panel h2{font-size:21px;margin:0}.table-intro{font-size:12px;margin:6px 0 20px;color:var(--muted)}.table-wrap{overflow-x:auto;max-height:740px}table{border-collapse:separate;border-spacing:0;width:100%;min-width:760px;font-size:12px;text-align:right}thead{position:sticky;top:0;z-index:1}th,td{padding:12px 14px;border-bottom:1px solid #edf1f3;white-space:nowrap}thead th{background:#eff4f6;color:#506b79;font-weight:600;font-size:11px}th:first-child{text-align:left}tbody th{color:#60747e;font-weight:400}tbody tr:first-child{background:#f8fbfc}tbody tr:hover{background:#f4f8fa}.total-cell{border-left:1px solid #edf1f3;font-weight:600}tfoot td,tfoot th{border-top:1px solid #cfdce3;border-bottom:0;font-weight:700;background:#f6f9fa}.method{display:grid;grid-template-columns:1.1fr 1fr;gap:35px;margin:28px 0 0;padding:22px 0 19px;border-top:1px solid #dce6eb}.method h3{font-size:12px;margin:0 0 8px}.method p{font-size:11px;color:var(--muted);margin:0;line-height:1.85}.footer{display:flex;justify-content:space-between;gap:20px;color:#81949e;font-size:10px;padding-top:9px}.total-latest{font-weight:600}.refresh-help{margin-top:9px;font-size:10px;color:#7a8f99;text-align:right}.status-detail{grid-column:2}.no-js{font-size:11px;color:var(--muted)}
+@media(max-width:1150px){.shell{padding:30px 25px}.metric-card{padding:16px 13px}.metric-value{font-size:24px}.fund-count{display:none}.chart-stats strong{font-size:18px}}@media(max-width:760px){.shell{padding:23px 15px}.masthead{display:block}h1{font-size:26px}.subtitle{font-size:12px}.actions{padding-top:18px}.info-strip{margin-top:20px;align-items:flex-start;gap:10px;flex-wrap:wrap}.cutoff strong{font-size:21px}.update-badge{font-size:10px}.status{display:block;padding:13px 14px}.status p{margin-top:4px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric-card:last-child{grid-column:span 2}.metric-value{font-size:28px}.fund-count{display:inline}.summary-heading{align-items:flex-start;gap:10px}.summary-heading p{text-align:right;font-size:10px}.chart-panel,.table-panel{padding:19px 13px 14px}.section-heading h2{font-size:21px}.chart-period{max-width:135px;font-size:10px}.chart-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 0}.chart-stats>div{padding-left:14px}.chart-stats>div:nth-child(3){padding-left:0;border-left:0}.chart-stats strong{font-size:18px}.chart-note{flex-direction:column;font-size:9px;gap:4px}.flow-chart{min-width:0}.nav{gap:7px}.nav a{font-size:11px;padding:5px 10px}.nav-label{display:none}.method{grid-template-columns:1fr;gap:20px}.footer{display:block}.footer span{display:block;margin-top:4px}.table-panel h2{font-size:19px}.refresh-help{text-align:left}}
+@media print{body{background:#fff}.shell{padding:0;max-width:none}.actions,.nav,.refresh-help{display:none}.chart-panel{break-inside:avoid;page-break-inside:avoid;margin-top:18px}.metric-card{box-shadow:none}.table-wrap{max-height:none}.chart-stats strong{font-size:16px}.footer{font-size:8px}}
+.interactive-flow{margin-top:10px}.chart-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 2px}.flow-range{font-size:11px;color:var(--muted)}.chart-reset{border:1px solid #d4e0e5;border-radius:5px;background:#fff;color:#365b70;padding:4px 11px;font-size:11px;white-space:nowrap}.chart-reset:hover{background:#f0f5f7}.flow-svg{display:block;width:100%;height:360px;overflow:visible;touch-action:pan-y;user-select:none;-webkit-user-select:none;outline-offset:-3px}.flow-help{font-size:11px;color:var(--muted);margin:2px 0 12px}.flow-svg text{font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif}.flow-svg:focus-visible{outline:2px solid #77b4d0;border-radius:4px}@media(max-width:760px){.flow-help{font-size:10px}}@media print{.chart-tools,.flow-help{display:none}}
+
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.login{width:100%;max-width:380px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:30px 28px 24px}
+.login h1{font-size:24px}.login .subtitle{margin:8px 0 22px;font-size:13px}
+.field{display:block;margin:0 0 14px}.field span{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}
+.field input{width:100%;padding:10px 12px;border:1px solid #cbd8df;border-radius:8px;font:inherit;color:var(--ink);background:#fff}
+.field input:focus{outline:2px solid #77b4d0;outline-offset:1px;border-color:#77b4d0}
+.login .button{width:100%;margin-top:6px;padding:11px 17px}.login .button[disabled]{opacity:.65;cursor:progress}
+.login-msg{min-height:20px;margin:12px 0 0;font-size:12px;color:var(--muted)}.login-msg.error{color:#b23b36}
+.login-note{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:#81949e;line-height:1.7}
+.download-msg{font-size:10px;color:#7a8f99;text-align:right;margin-top:6px;min-height:14px}
+[hidden]{display:none!important}
+</style></head><body>
+<div class="login-wrap" id="login-view">
+  <form class="login" id="login-form" autocomplete="on">
+    <p class="eyebrow">ETF SHARE FLOW · DASHBOARD</p>
+    <h1>五类 ETF · 每日净买卖</h1>
+    <p class="subtitle">请登录后查看。</p>
+    <label class="field"><span>账号</span><input id="login-user" name="username" autocomplete="username" required></label>
+    <label class="field"><span>密码</span><input id="login-pass" name="password" type="password" autocomplete="current-password" required></label>
+    <button class="button primary" id="login-button" type="submit">登录</button>
+    <p class="login-msg" id="login-msg" role="status" aria-live="polite"></p>
+    <p class="login-note">数据在服务器上以加密形式保存，只能用正确的账号和密码在浏览器内解密；关闭浏览器标签页后需重新登录。</p>
+  </form>
+</div>
+<main class="shell" id="app" hidden></main>
+<script>
+/* ETF charts (from the local dashboard template). Zoom and pan change the date window; the amount scale stays fixed. */
+(function () {
+  'use strict';
+
+  function clamp(value, minimum, maximum) {
+    return Math.max(minimum, Math.min(maximum, value));
+  }
+
+  function normalizeWindow(total, start, count, minimumCount) {
+    if (!Number.isInteger(total) || total < 1) throw new Error('A chart needs at least one date.');
+    var minimum = Math.min(total, Math.max(1, Math.round(minimumCount || 10)));
+    var size = clamp(Math.round(count), minimum, total);
+    return { start: clamp(Math.round(start), 0, total - size), count: size };
+  }
+
+  function zoomWindow(total, view, nextCount, anchorFraction, minimumCount) {
+    var anchor = clamp(anchorFraction, 0, 1);
+    var next = normalizeWindow(total, view.start, nextCount, minimumCount);
+    next.start = clamp(Math.round(view.start + anchor * view.count - anchor * next.count), 0, total - next.count);
+    return next;
+  }
+
+  function panWindow(total, view, deltaPixels, stepPixels, minimumCount) {
+    if (!(stepPixels > 0)) throw new Error('The date step must be positive.');
+    return normalizeWindow(total, view.start - Math.round(deltaPixels / stepPixels), view.count, minimumCount);
+  }
+
+  function dateIndex(view, fraction) {
+    return view.start + clamp(Math.floor(clamp(fraction, 0, 1) * view.count), 0, view.count - 1);
+  }
+
+  function amountLabel(value) {
+    var normalized = Math.abs(value) < 0.00005 ? 0 : value;
+    return (normalized > 0 ? '+' : '') + normalized.toLocaleString('en-US', {
+      minimumFractionDigits: 4, maximumFractionDigits: 4
+    }) + ' 亿元';
+  }
+
+  function fixedDomain(values) {
+    var minimum = Math.min.apply(null, [0].concat(values));
+    var maximum = Math.max.apply(null, [0].concat(values));
+    var extent = maximum - minimum || 1;
+    return { min: minimum - extent * 0.08, max: maximum + extent * 0.10 };
+  }
+
+  var helpers = { clamp: clamp, normalizeWindow: normalizeWindow, zoomWindow: zoomWindow,
+    panWindow: panWindow, dateIndex: dateIndex, amountLabel: amountLabel, fixedDomain: fixedDomain };
+  if (typeof module !== 'undefined' && module.exports) module.exports = helpers;
+  if (typeof document === 'undefined') return;
+
+  window.renderFlowCharts = function (data) {
+  var dates = data.daily_dates;
+  var matrix = data.daily_values_yi;
+  if (!Array.isArray(dates) || !dates.length || !Array.isArray(matrix) || matrix.length !== dates.length) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var red = '#c64843', green = '#16816b', neutral = '#657983';
+
+  function element(tag, attributes, text) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attributes || {}).forEach(function (key) { node.setAttribute(key, String(attributes[key])); });
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  document.querySelectorAll('.interactive-flow[data-category-index]').forEach(function (container) {
+    var categoryIndex = Number(container.dataset.categoryIndex);
+    var svg = container.querySelector('svg.flow-svg');
+    var rangeLabel = container.querySelector('.flow-range');
+    var resetButton = container.querySelector('button.chart-reset');
+    var values = matrix.map(function (row) { return row[categoryIndex]; });
+    if (!svg || values.some(function (value) { return typeof value !== 'number' || !Number.isFinite(value); })) return;
+    var total = dates.length;
+    var minimumCount = Math.min(10, total);
+    var view = { start: 0, count: total };
+    var domain = fixedDomain(values);
+    var activeIndex = null, drag = null, geometry = null, hoverGroup = null, barNodes = [];
+    var title = (data.categories || [])[categoryIndex] || 'ETF';
+    var storageKey = 'etf-date-window-v1:' + title;
+    try {
+      var saved = JSON.parse(sessionStorage.getItem(storageKey) || 'null');
+      if (saved && !saved.all && saved.start <= dates[total - 1] && saved.end >= dates[0]) {
+        var savedStart = dates.findIndex(function (day) { return day >= saved.start; });
+        var savedEnd = total - 1;
+        while (savedEnd > savedStart && dates[savedEnd] > saved.end) savedEnd--;
+        view = normalizeWindow(total, Math.max(0, savedStart), savedEnd - Math.max(0, savedStart) + 1, minimumCount);
+      }
+    } catch (error) { /* Storage is optional, including when opened as an offline file. */ }
+
+    function saveView() {
+      try {
+        sessionStorage.setItem(storageKey, JSON.stringify({ all: view.count === total,
+          start: dates[view.start], end: dates[view.start + view.count - 1] }));
+      } catch (error) { /* Chart interaction remains available without storage. */ }
+    }
+    container.dataset.yMin = String(domain.min);
+    container.dataset.yMax = String(domain.max);
+    svg.style.display = 'block';
+    svg.style.width = '100%';
+    svg.style.height = '360px';
+    svg.style.userSelect = 'none';
+    svg.style.touchAction = 'pan-y';
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', title + '每日净额，滚轮缩放日期，按住鼠标左键左右拖动日期，双击恢复全期。');
+
+    function y(value) {
+      return geometry.top + (domain.max - value) / (domain.max - domain.min) * geometry.plotHeight;
+    }
+
+    function point(event) {
+      var bounds = svg.getBoundingClientRect();
+      return { x: (event.clientX - bounds.left) * geometry.width / bounds.width,
+        y: (event.clientY - bounds.top) * geometry.height / bounds.height };
+    }
+
+    function inPlot(position) {
+      return position.x >= geometry.left && position.x <= geometry.right &&
+        position.y >= geometry.top && position.y <= geometry.bottom;
+    }
+
+    function hideHover() {
+      if (activeIndex !== null && barNodes[activeIndex - view.start]) {
+        barNodes[activeIndex - view.start].removeAttribute('stroke');
+        barNodes[activeIndex - view.start].removeAttribute('stroke-width');
+        barNodes[activeIndex - view.start].setAttribute('opacity', '0.86');
+      }
+      activeIndex = null;
+      if (hoverGroup) hoverGroup.replaceChildren();
+      delete container.dataset.activeDate;
+      delete container.dataset.activeValue;
+    }
+
+    function showHover(index) {
+      hideHover();
+      if (index < view.start || index >= view.start + view.count) return;
+      activeIndex = index;
+      var value = values[index], x = geometry.left + (index - view.start + 0.5) * geometry.step;
+      container.dataset.activeDate = dates[index];
+      container.dataset.activeValue = String(value);
+      var bar = barNodes[index - view.start];
+      bar.setAttribute('stroke', value >= 0 ? '#8f2925' : '#075b4a');
+      bar.setAttribute('stroke-width', '1.5');
+      bar.setAttribute('opacity', '1');
+      hoverGroup.appendChild(element('line', { x1: x, y1: geometry.top, x2: x, y2: geometry.bottom,
+        stroke: '#536f7e', 'stroke-width': 1, 'stroke-dasharray': '4 4' }));
+      var label = amountLabel(value);
+      var labelWidth = Math.min(geometry.width - 8, Math.max(124, label.length * 8.1 + 22));
+      var amountX = clamp(x, labelWidth / 2 + 3, geometry.width - labelWidth / 2 - 3);
+      var amountBottom = clamp(Math.min(y(value), y(0)) - 9, 34, geometry.bottom - 10);
+      hoverGroup.appendChild(element('rect', { x: amountX - labelWidth / 2, y: amountBottom - 27,
+        width: labelWidth, height: 28, rx: 5, fill: '#ffffff', stroke: '#cbd9e0', 'stroke-width': 1 }));
+      hoverGroup.appendChild(element('text', { x: amountX, y: amountBottom - 8, 'text-anchor': 'middle',
+        fill: value > 0 ? red : (value < 0 ? green : neutral), 'font-size': 13, 'font-weight': 700 }, label));
+      var dateWidth = 104, dateX = clamp(x, dateWidth / 2 + 3, geometry.width - dateWidth / 2 - 3);
+      hoverGroup.appendChild(element('rect', { x: dateX - dateWidth / 2, y: geometry.height - 30,
+        width: dateWidth, height: 25, rx: 4, fill: '#264e63' }));
+      hoverGroup.appendChild(element('text', { x: dateX, y: geometry.height - 13, 'text-anchor': 'middle',
+        fill: '#ffffff', 'font-size': 12, 'font-weight': 600 }, dates[index]));
+    }
+
+    function draw() {
+      var previousActive = activeIndex;
+      activeIndex = null;
+      var width = Math.max(220, Math.round(svg.getBoundingClientRect().width || container.clientWidth || 1000));
+      var height = 360, left = width < 560 ? 57 : 70, right = width - 18, top = 47, bottom = height - 73;
+      geometry = { width: width, height: height, left: left, right: right, top: top, bottom: bottom,
+        plotWidth: right - left, plotHeight: bottom - top, step: (right - left) / view.count };
+      svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+      svg.setAttribute('height', height);
+      svg.setAttribute('font-family', 'Segoe UI,Microsoft YaHei,system-ui,sans-serif');
+      svg.replaceChildren();
+      svg.appendChild(element('title', {}, title + '每日净额，单位亿元'));
+      svg.appendChild(element('desc', {}, '悬停显示日期和金额。滚轮仅缩放日期轴，按住左键左右拖动。金额轴固定为全期范围。'));
+      svg.appendChild(element('text', { x: left, y: 23, fill: neutral, 'font-size': 11 }, '金额（亿元）'));
+      var grid = element('g', { 'aria-hidden': 'true' });
+      for (var tick = 0; tick <= 4; tick++) {
+        var tickValue = domain.min + (domain.max - domain.min) * tick / 4;
+        var tickY = y(tickValue);
+        grid.appendChild(element('line', { x1: left, y1: tickY, x2: right, y2: tickY,
+          stroke: '#e8eef1', 'stroke-width': 1 }));
+        grid.appendChild(element('text', { x: left - 9, y: tickY + 4, 'text-anchor': 'end',
+          fill: neutral, 'font-size': 10 }, tickValue.toLocaleString('en-US', { maximumFractionDigits: 1 })));
+      }
+      svg.appendChild(grid);
+      var bars = element('g', { 'aria-hidden': 'true' });
+      barNodes = [];
+      var zeroY = y(0), barWidth = Math.max(0.7, Math.min(27, geometry.step * 0.76));
+      for (var i = view.start; i < view.start + view.count; i++) {
+        var value = values[i], endY = y(value), barHeight = Math.max(0.75, Math.abs(endY - zeroY));
+        var bar = element('rect', { x: left + (i - view.start + 0.5) * geometry.step - barWidth / 2,
+          y: value === 0 ? zeroY - 0.5 : Math.min(endY, zeroY), width: barWidth,
+          height: value === 0 ? 1 : barHeight, fill: value > 0 ? red : (value < 0 ? green : neutral), opacity: 0.86 });
+        bars.appendChild(bar);
+        barNodes.push(bar);
+      }
+      svg.appendChild(bars);
+      svg.appendChild(element('line', { x1: left, y1: zeroY, x2: right, y2: zeroY,
+        stroke: '#8aa0ac', 'stroke-width': 1.2, 'pointer-events': 'none' }));
+      svg.appendChild(element('line', { x1: left, y1: bottom, x2: right, y2: bottom,
+        stroke: '#cbd8df', 'stroke-width': 1 }));
+      var tickCount = Math.min(view.count, Math.max(2, Math.floor(geometry.plotWidth / 116)));
+      var used = new Set();
+      for (var t = 0; t < tickCount; t++) {
+        var localIndex = Math.round(t * (view.count - 1) / Math.max(1, tickCount - 1));
+        if (used.has(localIndex)) continue;
+        used.add(localIndex);
+        var tickX = left + (localIndex + 0.5) * geometry.step;
+        grid.appendChild(element('line', { x1: tickX, y1: bottom, x2: tickX, y2: bottom + 5,
+          stroke: '#9eb0ba', 'stroke-width': 1 }));
+        grid.appendChild(element('text', { x: clamp(tickX, 40, width - 40), y: bottom + 21,
+          'text-anchor': 'middle', fill: neutral, 'font-size': 10 }, dates[view.start + localIndex]));
+      }
+      var hitArea = element('rect', { x: left, y: top, width: geometry.plotWidth, height: geometry.plotHeight,
+        fill: 'transparent', 'pointer-events': 'all', class: 'flow-hit-area', cursor: drag ? 'grabbing' : 'grab' });
+      svg.appendChild(hitArea);
+      hoverGroup = element('g', { class: 'flow-hover', 'pointer-events': 'none', 'aria-hidden': 'true' });
+      svg.appendChild(hoverGroup);
+      container.dataset.visibleStart = dates[view.start];
+      container.dataset.visibleEnd = dates[view.start + view.count - 1];
+      container.dataset.visibleCount = String(view.count);
+      if (rangeLabel) rangeLabel.textContent = dates[view.start] + ' — ' + dates[view.start + view.count - 1] + ' · ' + view.count + ' 个交易日';
+      if (resetButton) resetButton.disabled = view.start === 0 && view.count === total;
+      if (previousActive !== null && previousActive >= view.start && previousActive < view.start + view.count) showHover(previousActive);
+      else { delete container.dataset.activeDate; delete container.dataset.activeValue; }
+    }
+
+    function reset() {
+      view = { start: 0, count: total };
+      activeIndex = null;
+      draw();
+      saveView();
+    }
+
+    svg.addEventListener('wheel', function (event) {
+      var position = point(event);
+      if (!inPlot(position) || !event.deltaY) return;
+      event.preventDefault();
+      var delta = event.deltaY * (event.deltaMode === 1 ? 16 : (event.deltaMode === 2 ? geometry.plotHeight : 1));
+      var factor = Math.exp(clamp(delta, -500, 500) * 0.0018);
+      var nextCount = Math.round(view.count * factor);
+      if (nextCount === view.count) nextCount += delta > 0 ? 1 : -1;
+      view = zoomWindow(total, view, nextCount, (position.x - geometry.left) / geometry.plotWidth, minimumCount);
+      draw();
+      showHover(dateIndex(view, (position.x - geometry.left) / geometry.plotWidth));
+      saveView();
+    }, { passive: false });
+
+    svg.addEventListener('pointerdown', function (event) {
+      if (event.button !== 0) return;
+      var position = point(event);
+      if (!inPlot(position)) return;
+      event.preventDefault();
+      svg.focus({ preventScroll: true });
+      drag = { pointerId: event.pointerId, x: position.x, view: { start: view.start, count: view.count }, step: geometry.step };
+      svg.setPointerCapture(event.pointerId);
+      svg.style.cursor = 'grabbing';
+      var hit = svg.querySelector('.flow-hit-area');
+      if (hit) hit.setAttribute('cursor', 'grabbing');
+      showHover(dateIndex(view, (position.x - geometry.left) / geometry.plotWidth));
+    });
+
+    svg.addEventListener('pointermove', function (event) {
+      var position = point(event);
+      if (drag && event.pointerId === drag.pointerId) {
+        var next = panWindow(total, drag.view, position.x - drag.x, drag.step, minimumCount);
+        if (next.start !== view.start) { view = next; draw(); }
+        showHover(dateIndex(view, (position.x - geometry.left) / geometry.plotWidth));
+      } else if (inPlot(position)) {
+        showHover(dateIndex(view, (position.x - geometry.left) / geometry.plotWidth));
+      } else hideHover();
+    });
+
+    function endDrag(event) {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      var id = drag.pointerId;
+      drag = null;
+      saveView();
+      svg.style.cursor = '';
+      var hit = svg.querySelector('.flow-hit-area');
+      if (hit) hit.setAttribute('cursor', 'grab');
+      if (svg.hasPointerCapture(id)) svg.releasePointerCapture(id);
+      if (event.type === 'pointercancel') hideHover();
+      else {
+        var position = point(event);
+        if (!inPlot(position)) hideHover();
+      }
+    }
+    svg.addEventListener('pointerup', endDrag);
+    svg.addEventListener('pointercancel', endDrag);
+    svg.addEventListener('lostpointercapture', function () {
+      drag = null;
+      svg.style.cursor = '';
+      var hit = svg.querySelector('.flow-hit-area');
+      if (hit) hit.setAttribute('cursor', 'grab');
+    });
+    svg.addEventListener('pointerleave', function () { if (!drag) hideHover(); });
+    svg.addEventListener('dblclick', function (event) {
+      if (inPlot(point(event))) { event.preventDefault(); reset(); }
+    });
+    svg.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' || event.key === 'Home') { event.preventDefault(); reset(); return; }
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      var selected = activeIndex === null ? view.start + view.count - 1 : activeIndex;
+      selected = clamp(selected + (event.key === 'ArrowLeft' ? -1 : 1), view.start, view.start + view.count - 1);
+      showHover(selected);
+    });
+    svg.addEventListener('blur', function () { if (!drag) hideHover(); });
+    if (resetButton) resetButton.addEventListener('click', reset);
+    if (typeof ResizeObserver !== 'undefined') {
+      var lastWidth = 0;
+      var observer = new ResizeObserver(function () {
+        var width = Math.round(svg.getBoundingClientRect().width);
+        if (width !== lastWidth) { lastWidth = width; draw(); }
+      });
+      observer.observe(container);
+    } else window.addEventListener('resize', draw);
+    window.addEventListener('blur', function () {
+      var capturedId = drag ? drag.pointerId : null;
+      drag = null;
+      svg.style.cursor = '';
+      var hit = svg.querySelector('.flow-hit-area');
+      if (hit) hit.setAttribute('cursor', 'grab');
+      if (capturedId !== null && svg.hasPointerCapture(capturedId)) svg.releasePointerCapture(capturedId);
+      hideHover();
+    });
+    draw();
+  });
+  };
+})();
+
+</script>
+<script>
+/* Login + in-browser decryption + rendering. No data is present until the right credentials decrypt it. */
+(function () {
+  'use strict';
+  var enc = new TextEncoder(), dec = new TextDecoder();
+  var SESSION = 'etf-dash-key-v1';
+  var meta = null, cryptoKey = null, data = null;
+
+  function b64d(s) { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+  function b64e(u) { var s = ''; for (var i = 0; i < u.length; i++) s += String.fromCharCode(u[i]); return btoa(s); }
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }); }
+
+  async function loadMeta() {
+    if (meta) return meta;
+    var r = await fetch('data.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error('数据文件读取失败（HTTP ' + r.status + '）');
+    meta = await r.json();
+    return meta;
+  }
+  async function derive(user, pass, m) {
+    var base = await crypto.subtle.importKey('raw', enc.encode(user + '\n' + pass), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64d(m.salt), iterations: m.iter, hash: 'SHA-256' },
+      base, { name: 'AES-GCM', length: 256 }, true, ['decrypt']);
+  }
+  async function open(k, m) {
+    var pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64d(m.iv), additionalData: enc.encode('etf-dashboard-v1') }, k, b64d(m.ct));
+    return JSON.parse(dec.decode(pt));
+  }
+  async function remember(k, m) {
+    try { var raw = new Uint8Array(await crypto.subtle.exportKey('raw', k)); sessionStorage.setItem(SESSION, JSON.stringify({ salt: m.salt, k: b64e(raw) })); }
+    catch (e) { /* optional */ }
+  }
+  async function restore(m) {
+    try {
+      var s = JSON.parse(sessionStorage.getItem(SESSION) || 'null');
+      if (!s || s.salt !== m.salt) return null;   // site rebuilt with a new salt -> log in again
+      return await crypto.subtle.importKey('raw', b64d(s.k), { name: 'AES-GCM' }, true, ['decrypt']);
+    } catch (e) { return null; }
+  }
+  function forget() { try { sessionStorage.removeItem(SESSION); } catch (e) { /* optional */ } }
+
+  function cls(v) { return v > 0.00005 ? 'positive' : (v < -0.00005 ? 'negative' : 'neutral'); }
+  function num(v, d) {
+    d = d === undefined ? 2 : d;
+    var n = Math.abs(v) < Math.pow(10, -d) / 2 ? 0 : v;
+    return (n > 0 ? '+' : '') + n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function word(v) { return v > 0.00005 ? '净买入' : (v < -0.00005 ? '净卖出' : '持平'); }
+
+  function render(D) {
+    var cats = D.categories, last = D.latest_date, n = D.daily_dates.length;
+    var sumLatest = D.latest_values_yi.reduce(function (a, b) { return a + b; }, 0);
+    var st = D.state || {}, pending = st.pending_dates || [], prov = D.provisional_dates || [];
+    var status;
+    if (pending.length) status = { c: 'warning', t: '较新交易日的数据尚未齐全', p: '待补日期：' + pending.join('、') + '。看板保留上一完整版本（截至 ' + last + '），缺失数据不会按零计算。' };
+    else if (prov.indexOf(last) >= 0) status = { c: 'warning', t: '部分份额待次日最终确认', p: '深交所当晚份额为初值（' + prov.join('、') + '），以下一交易日早间发布的数值为准。已最终确认至 ' + (st.last_finalized_date || '—') + '。' };
+    else status = { c: 'ready', t: '数据已最终确认', p: '全部份额均为交易所最终值，确认至 ' + (st.last_finalized_date || last) + '。' };
+    var h = [];
+    h.push('<header class="masthead"><div><p class="eyebrow">ETF SHARE FLOW · DASHBOARD</p><h1>五类 ETF · 每日净买卖</h1><p class="subtitle">跟踪份额变化，把同类基金合并为每天一笔净额。</p></div><div><div class="actions">' +
+      '<button class="button" id="logout-button" type="button">退出登录</button>' +
+      (meta.workbook ? '<button class="button primary" id="workbook-button" type="button">下载完整 Excel ↓</button>' : '') +
+      '</div><p class="download-msg" id="download-msg" role="status" aria-live="polite"></p></div></header>');
+    h.push('<div class="info-strip"><div class="cutoff"><span>数据截至</span><strong>' + esc(last) + '</strong><span>收盘后份额</span></div><div class="update-badge"><i class="pulse-dot"></i>每日 23:30 检查 · A 股交易日增量更新</div></div>');
+    h.push('<section class="status ' + status.c + '" aria-label="数据状态"><div class="status-label">' + esc(status.t) + '</div><p>' + esc(status.p) + '</p><div></div><p class="status-detail">看板生成于 ' + esc(D.generated_at) + '（北京时间）</p></section>');
+    h.push('<div class="summary-heading"><h2>最新交易日 · ' + esc(last) + '</h2><p>五类合计 <span class="total-latest ' + cls(sumLatest) + '">' + num(sumLatest) + ' 亿元</span> · 红正绿负</p></div><div class="metrics">');
+    cats.forEach(function (c, i) {
+      var v = D.latest_values_yi[i];
+      h.push('<a class="metric-card" href="#category-' + i + '" aria-label="查看' + esc(c) + '图表"><div class="metric-top"><span>' + esc(c) + '</span><span class="fund-count">' + D.fund_counts[i] + ' 只 ETF</span></div><div class="metric-value ' + cls(v) + '">' + num(v) + '<small>亿</small></div><div class="metric-caption">' + word(v) + '<span>查看图表 ↗</span></div></a>');
+    });
+    h.push('</div><nav class="nav" aria-label="看板目录"><span class="nav-label">快速查看</span>' + cats.map(function (c, i) { return '<a href="#category-' + i + '">' + esc(c) + '</a>'; }).join('') + '<a href="#recent">近 20 日明细</a></nav>');
+    var period = esc(D.first_date) + ' — ' + esc(last) + ' · ' + n + ' 个交易日';
+    cats.forEach(function (c, i) {
+      var bs = D.buy_sell_days[i];
+      h.push('<section class="chart-panel" id="category-' + i + '" aria-labelledby="category-title-' + i + '"><div class="section-heading"><div><p class="eyebrow">0' + (i + 1) + ' · DAILY NET FLOW</p><h2 id="category-title-' + i + '">' + esc(c) + '</h2></div><span class="chart-period">' + period + '</span></div>' +
+        '<div class="chart-stats"><div><span>最新交易日净额</span><strong class="' + cls(D.latest_values_yi[i]) + '">' + num(D.latest_values_yi[i]) + '<small>亿元</small></strong></div>' +
+        '<div><span>近 20 日合计</span><strong class="' + cls(D.recent20_yi[i]) + '">' + num(D.recent20_yi[i]) + '<small>亿元</small></strong></div>' +
+        '<div><span>区间累计净额</span><strong class="' + cls(D.totals_yi[i]) + '">' + num(D.totals_yi[i]) + '<small>亿元</small></strong></div>' +
+        '<div><span>净买入 / 净卖出天数</span><strong class="day-count">' + bs[0] + '<small> / </small>' + bs[1] + '<small>天</small></strong></div></div>' +
+        '<div class="interactive-flow" data-category-index="' + i + '"><div class="chart-tools"><span class="flow-range">' + period + '</span><button class="chart-reset" type="button">显示全部</button></div>' +
+        '<svg class="flow-svg" role="img" tabindex="0" aria-label="' + esc(c) + '每日净买卖交互柱状图，单位亿元" aria-describedby="flow-help-' + i + '"></svg>' +
+        '<p class="flow-help" id="flow-help-' + i + '">鼠标指向查看日期和金额；滚轮缩放日期，按住左键左右拖动，双击恢复全期。金额纵轴刻度保持固定。</p></div>' +
+        '<div class="chart-note"><span><i class="dot red"></i>正数：净买入 <i class="dot green"></i>负数：净卖出</span><span>各图纵轴尺度不同 · 同一品类每日合并为一根净额柱</span></div></section>');
+    });
+    var rows = [];
+    for (var r = n - 1; r >= Math.max(0, n - 20); r--) {
+      var vals = D.daily_values_yi[r], s = vals.reduce(function (a, b) { return a + b; }, 0);
+      rows.push('<tr><th scope="row">' + esc(D.daily_dates[r]) + (prov.indexOf(D.daily_dates[r]) >= 0 ? ' <small class="neutral">初值</small>' : '') + '</th>' +
+        vals.map(function (v) { return '<td class="' + cls(v) + '">' + num(v) + '</td>'; }).join('') + '<td class="total-cell ' + cls(s) + '">' + num(s) + '</td></tr>');
+    }
+    var rs = D.recent20_yi.reduce(function (a, b) { return a + b; }, 0);
+    h.push('<section class="table-panel" id="recent" aria-labelledby="recent-heading"><h2 id="recent-heading">最近 20 个交易日</h2><p class="table-intro">单位：亿元 · 最新日期在前 · 同类 ETF 当日买卖相抵后的净额</p><div class="table-wrap"><table><thead><tr><th scope="col">交易日期</th>' +
+      cats.map(function (c) { return '<th scope="col">' + esc(c) + '</th>'; }).join('') + '<th scope="col" class="total-cell">五类合计</th></tr></thead><tbody>' + rows.join('') +
+      '</tbody><tfoot><tr><th scope="row">近 20 日合计</th>' + D.recent20_yi.map(function (v) { return '<td class="' + cls(v) + '">' + num(v) + '</td>'; }).join('') + '<td class="total-cell ' + cls(rs) + '">' + num(rs) + '</td></tr></tfoot></table></div></section>');
+    h.push('<aside class="method"><div><h3>计算口径</h3><p>每日净额 = 剔除拆分、折算等机械变化后的份额变动 × 当日不复权收盘价，再按品类加总。正数为净买入，负数为净卖出。拆分按公告的精确份额调整，原始份额及调整前后金额保存在 Excel；新基金从上市日计算，并使用真实前一日份额作基准。</p></div>' +
+      '<div><h3>更新与数据状态</h3><p>每个 A 股交易日北京时间 23:30 自动增量更新；非交易日跳过。来源尚未完整发布时保留上次完整数据，缺失数据不会当作零。深交所当晚份额为初值，次日确认后回写。基金名录每次运行都会检索，同指数普通 ETF 新上市会自动纳入并回溯。全部日期和时间均为北京时间。</p></div></aside>');
+    h.push('<footer class="footer"><span>区间 ' + period + ' · ' + D.fund_total + ' 只 ETF · 份额口径金额估算</span><span>看板生成于 ' + esc(D.generated_at) + '</span></footer>');
+    var app = $('app');
+    app.innerHTML = h.join('\n');
+    $('login-view').hidden = true;
+    app.hidden = false;
+    window.renderFlowCharts(D);
+    $('logout-button').addEventListener('click', function () { forget(); location.reload(); });
+    var wb = $('workbook-button');
+    if (wb) wb.addEventListener('click', downloadWorkbook);
+  }
+
+  async function downloadWorkbook() {
+    var btn = $('workbook-button'), msg = $('download-msg');
+    btn.disabled = true;
+    msg.textContent = '正在下载并解密（约 ' + (meta.workbook.size / 1048576).toFixed(1) + ' MB）…';
+    try {
+      var r = await fetch(meta.workbook.file + '?v=' + encodeURIComponent(meta.salt), { cache: 'no-store' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      var buf = new Uint8Array(await r.arrayBuffer());
+      var pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: buf.slice(0, 12), additionalData: enc.encode('etf-workbook-v1') }, cryptoKey, buf.slice(12));
+      var url = URL.createObjectURL(new Blob([pt], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+      var a = document.createElement('a');
+      a.href = url; a.download = data.workbook_name || 'ETF五类_两年每日净买卖.xlsx'; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+      msg.textContent = '已下载 ' + (data.workbook_name || '');
+    } catch (e) {
+      msg.textContent = '下载失败：' + (e && e.message ? e.message : e);
+    } finally { btn.disabled = false; }
+  }
+
+  async function start() {
+    var form = $('login-form'), msg = $('login-msg'), btn = $('login-button');
+    if (!window.crypto || !crypto.subtle) { msg.className = 'login-msg error'; msg.textContent = '当前浏览器不支持所需的加密功能，请使用最新版 Chrome、Edge、Safari 或 Firefox 通过 https 打开。'; btn.disabled = true; return; }
+    try {
+      var m = await loadMeta(), k = await restore(m);
+      if (k) { cryptoKey = k; data = await open(k, m); render(data); return; }
+    } catch (e) { forget(); }
+    form.addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      btn.disabled = true; msg.className = 'login-msg'; msg.textContent = '正在验证…';
+      try {
+        var m = await loadMeta();
+        var k = await derive($('login-user').value.trim(), $('login-pass').value, m);
+        var d;
+        try { d = await open(k, m); } catch (e) { throw new Error('BAD'); }
+        cryptoKey = k; data = d;
+        await remember(k, m);
+        $('login-pass').value = '';
+        render(d);
+      } catch (e) {
+        msg.className = 'login-msg error';
+        msg.textContent = e.message === 'BAD' ? '账号或密码不正确。' : (e.message || '登录失败');
+        btn.disabled = false;
+      }
+    });
+    $('login-user').focus();
+  }
+  start();
+})();
+
+</script>
+</body></html>
